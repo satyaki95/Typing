@@ -48,4 +48,14 @@ body{
     margin:5px;
     padding-right:2px;
 }
+.hidden-input{
+    opacity:0;
+}
+
+.correct{
+    color:green;
+}
+.incorrect{
+    color:red;
+}
 `;
