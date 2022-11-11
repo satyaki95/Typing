@@ -1,8 +1,22 @@
 import React from 'react';
 
-const TypingBox = () => {
+const TypingBox = ({words}) => {
   return (
-    <div>TypingBox</div>
+    <>
+      <div className='type-box'>
+        <div className='words'>
+          {words.map((word,index)=>(
+            <span className='word'>
+                {word.split("").map((char,idx)=>(
+                  <span>{char}</span>
+                ))}
+            </span>
+          ))}
+        </div>
+      </div>
+
+
+    </>
   )
 }
 

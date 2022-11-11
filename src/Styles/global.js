@@ -1,11 +1,51 @@
-import React, { Component } from 'react';
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
+
+    *,
+    *::after,
+    *::before{
+        box-sizing:border-box;
+    }
 body{
-    background: red;
+    background: black;
+    color:white;
+    padding:0;
+    margin:0;
+    transition: all 0.25s linear;
+    font-family: 'Play', sans-serif;
 }
-.heading{
-    font-size: 10rem;
+
+.canvas{
+    display: grid;
+    grid-auto-flow:row;
+    grid-template-row:auto 1fr auto;
+    min-height:100vh;
+    gap:0.5rem;
+    padding:1rem;
+    width:100vw;
+    align-items:center;
+}
+
+.type-box{
+    display:block;
+    max-width:1000px;
+    height:160px;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    overflow:hidden;
+    font-family: 'Kalam', cursive;
+}
+.words{
+    font-size:30px;
+    display:flex;
+    flex-wrap:wrap;
+    align-content:center;
+    width:100%;
+}
+.word{
+    margin:5px;
+    padding-right:2px;
 }
 `;
