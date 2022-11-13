@@ -84,4 +84,58 @@ body{
         100% {border-right-color:#fff;}
     }
 }
+
+.upper-menu{
+    display:flex;
+    max-width:1000px;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content:space-between;
+    font-size:20px;
+    padding:1rem;
+}
+
+.counter{
+    cursor:none;
+}
+
+.time-modes{
+    display:flex;
+}
+
+.time{
+    margin-right:15px;
+
+    &:hover{
+        color: rebeccapurple;
+        cursor:pointer;
+    }
+}
+
+.stats-box{
+    display:flex;
+    max-width:1000px;
+    height:auto;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.title{
+    font-size:20px;
+    color:gray;
+}
+
+.subtitle{
+    font-size:30px;
+    color:#00563B;
+}
+
+.left-stats{
+    width:30%;
+    pading:30px;
+}
+
+.right-stats{
+    width:70%;
+}
 `;
