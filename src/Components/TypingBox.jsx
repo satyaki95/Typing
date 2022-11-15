@@ -16,6 +16,10 @@ const TypingBox = ({}) => {
   const [intervalId, setIntervalId] = useState(null);
   const [correctChars, setCorrectChars] = useState(0); 
   const [correctWords, setCorrectWords] = useState(0);
+  const [incorrectChars, setIncorrectChars] = useState(0);
+  const [extraChars, setExtraChars] = useState(0);
+  const [missedChars, setMissedChars] = useState(0);
+  const [graphData, setGraphData] = useState([]);
 
   const [wordsArray, setWordsArray] = useState (()=>{
     return randomWords(100);
@@ -51,6 +55,14 @@ const resetWordSpanRefClassName = () => {
       function timer(){
         setCountDown((prevCountDown)=>{
 
+// Graph data
+          setCorrectChars((correctChars)=>{
+            setGraphData((data)=>{
+              return [...data,[testTime-prevCountDown,Math.round((correctChars/5)/((testTime-prevCountDown+1)/60))]]
+            });
+            return correctChars;
+          })
+
           if(prevCountDown===1){
             clearInterval(intervalId);
             setCountDown(0);
@@ -80,8 +92,9 @@ const resetWordSpanRefClassName = () => {
 
 if(e.keyCode===32){
 
-  const correctChars = wordSpanRef[currWordIndex].current.querySelectorAll('.incorrect');
-
+  const correctChars = wordSpanRef[currWordIndex].current.querySelectorAll('.correct');
+  const incorrectChars = wordSpanRef[currWordIndex].current.querySelectorAll('.incorrect');
+  setMissedChars(missedChars + (allChildrenSpans.length-(incorrectChars.length+correctChars.length)));
   if(correctChars.length===allChildrenSpans.length){
     setCorrectWords(correctWords+1); 
   }
@@ -145,6 +158,7 @@ if(currCharIndex===allChildrenSpans.length){
 
   wordSpanRef[currWordIndex].current.append(newSpan);
   setCurrCharIndex(currCharIndex+1);
+  setExtraChars(extraChars+1);
   return;
 }
 
@@ -156,8 +170,8 @@ if(currCharIndex===allChildrenSpans.length){
       setCorrectChars(correctChars+1);
     }
     else{
-      console.log("incorrect");
       allChildrenSpans[currCharIndex].className='char incorrect';
+      setIncorrectChars(incorrectChars+1);
     }
 
     if(currCharIndex+1=== allChildrenSpans.length){
@@ -212,8 +226,16 @@ if(currCharIndex===allChildrenSpans.length){
 
   return (
     <div>
-      <UpperMenu countDown={countDown}/>
-      {testOver?(<Stats wpm={calculateWPM()} accuracy={calculateAccuracy()} />):(
+      
+      {testOver ? (<Stats wpm={calculateWPM()} 
+      accuracy={calculateAccuracy()} 
+      graphData={graphData} 
+      correctChars={correctChars}
+      incorrectChars={incorrectChars}
+      extraChars={extraChars}
+      missedChars={missedChars} />):(
+        <>
+              <UpperMenu countDown={countDown}/>
               <div className='type-box' onClick={focusInput}>
               <div className='words'>
                 {words.map((word,index)=>(
@@ -225,6 +247,7 @@ if(currCharIndex===allChildrenSpans.length){
                 ))}
               </div>
             </div>
+            </>
       )}
 
       <input 
