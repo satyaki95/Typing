@@ -10,6 +10,7 @@ const Stats = ({wpm,accuracy,graphData,correctChars,incorrectChars,extraChars,mi
       return i;
     }
   })
+  console.log(graphData);
   return (
     <div className="stats-box">
         <div className="left-stats">
@@ -24,7 +25,7 @@ const Stats = ({wpm,accuracy,graphData,correctChars,incorrectChars,extraChars,mi
             <div className="subtitle">extra-{extraChars}</div>
         </div>
         <div className="right-stats">
-            <Graph graphData={newGraph} color={accuracy<50?'#ff0000':'#00FF00'} />
+            <Graph graphData={newGraph} accuracy={accuracy} wpm={wpm} color={accuracy<50?'#ff0000':'#00FF00'} />
         </div>
     </div> 
   )

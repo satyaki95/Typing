@@ -22,7 +22,7 @@ ChartJS.register(
     Legend
 );
 
-const Graph = ({graphData},color) => {
+const Graph = ({graphData,color,accuracy,wpm}) => {
   return (
     <div>
         <Line 
@@ -31,10 +31,20 @@ const Graph = ({graphData},color) => {
                 labels: graphData.map(i=>i[0]+1),
                 datasets:[
                     {
-                        data:graphData.map(i=>[i]),
-                        label: 'just random values',
-                        bordercolor:color
-                    }
+                        data:graphData.map(i=>i[1]),
+                        // label: 'just random values',
+                        borderColor:color
+                    },
+                    // {
+                    //     data:accuracy.map(i=>i[1]),
+                    //     // label: 'just random values',
+                    //     borderColor:'blue'
+                    // },
+                    // {
+                    //     data:wpm.map(i=>i[1]),
+                    //     // label: 'just random values',
+                    //     borderColor:'yellow'
+                    // }
                 ]
             }
         }
