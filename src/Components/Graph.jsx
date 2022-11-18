@@ -11,6 +11,7 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import { useTheme } from 'styled-components';
 
 ChartJS.register(
     CategoryScale,
@@ -23,6 +24,7 @@ ChartJS.register(
 );
 
 const Graph = ({graphData,color,accuracy,wpm}) => {
+    const {theme} = useTheme();
   return (
     <div>
         <Line 
