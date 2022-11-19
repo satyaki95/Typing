@@ -1,6 +1,5 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
-
+import React from 'react'
+import {Line} from 'react-chartjs-2';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,7 +10,8 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
-import { useTheme } from 'styled-components';
+import { useTheme } from '../Context/ThemeContext';
+
 
 ChartJS.register(
     CategoryScale,
@@ -23,38 +23,33 @@ ChartJS.register(
     Legend
 );
 
-const Graph = ({graphData,color,accuracy,wpm}) => {
+
+
+const Graph = ({graphData}) => {
+
     const {theme} = useTheme();
+
   return (
     <div>
-        <Line 
-        data={
-            {
-                labels: graphData.map(i=>i[0]+1),
-                datasets:[
-                    {
-                        data:graphData.map(i=>i[1]),
-                        // label: 'just random values',
-                        borderColor:color
-                    },
-                    // {
-                    //     data:accuracy.map(i=>i[1]),
-                    //     // label: 'just random values',
-                    //     borderColor:'blue'
-                    // },
-                    // {
-                    //     data:wpm.map(i=>i[1]),
-                    //     // label: 'just random values',
-                    //     borderColor:'yellow'
-                    // }
-                ]
+
+        <Line
+            data={
+                {
+                    labels: graphData.map(i=>i[0]+1),
+                    datasets: [
+                        {
+                            data: graphData.map(i=>i[1]),
+                            label: 'wpm',
+                            borderColor: theme.title
+                        }
+                    ]
+                }
             }
-        }
         >
-            
         </Line>
+
     </div>
   )
 }
 
-export default Graph;
+export default Graph
