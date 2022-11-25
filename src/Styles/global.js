@@ -14,7 +14,13 @@ body{
     padding:0;
     margin:0;
     transition: all 0.25s linear;
+    overflow-y: scroll;
 }
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 
 .canvas{
     display: grid;
@@ -97,7 +103,7 @@ body{
     color: ${({theme})=> theme.typeBoxText}
 }
 
-.time-modes{
+.time-modes, .word-mode{
     display:flex;
 }
 
@@ -105,12 +111,17 @@ body{
     cursor:none;
 }
 
-.time{
+.time, .no-of-words{
     margin-right: 15px;
 }
 
-.time:hover{
+.time:hover, .no-of-words:hover{
     color: ${({theme})=> theme.title};
+    cursor: pointer;
+}
+
+.mode:hover{
+    color: ${({theme})=>theme.title};
     cursor: pointer;
 }
 
@@ -141,14 +152,101 @@ body{
     width:70%;
 }
 
-.footer, .header{
+.header{
+
     display: flex;
     width: 1000px;
     margin-left:auto;
     margin-right:auto;
     justify-content: space-between;
     height:60px;
-
 }
 
+.footer{
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin-left:auto;
+    margin-right:auto;
+    align-items: center;
+    height:60px;
+}
+
+.actual-footer{
+    display:flex;
+    justify-content: space-between;
+    width: 1000px;
+}
+.hint{
+    kbd{
+        background-color: ${({theme})=>theme.title};
+        color: ${({theme})=>theme.background};
+        padding: 2.5px 5px;
+        border-radius: 3px;
+    }
+}
+
+.result-graph, .table{
+    width: 1000px;
+    margin: auto;
+}
+
+.user-profile{
+    width:1000px;
+    margin:auto;
+    display: flex;
+    min-height: 15rem;
+    background: ${({theme})=> theme.typeBoxText};
+    border-radius: 20px;
+}
+
+.user{
+    display:flex;
+    width: 50%;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 1rem;
+    border-right: 2px solid;
+}
+
+.picture{
+    width:40%;
+}
+
+.info{
+    width: 60%;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.total-times{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.centre-of-screen{
+    display:flex;
+    min-height:100vh;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+}
+
+.instruction{
+    color: ${({theme})=>theme.title}
+}
+
+
+.reset-btn{
+    display: block;
+    margin: auto;
+    margin-top:3rem;
+    transform: scale(2);
+}
 `;

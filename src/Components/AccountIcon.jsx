@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { auth } from '../firebaseConfig';
+import { auth, db } from '../firebaseConfig';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
@@ -34,6 +34,8 @@ const AccountIcon = () => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(0);
 
+    const {setAlert} = useAlert();
+
     const handleValueChange = (e,v)=>{
         setValue(v);
     }
@@ -45,9 +47,17 @@ const AccountIcon = () => {
 
     const logout = ()=>{
         auth.signOut().then((ok)=>{
-            alert("Logged out");
+            setAlert({
+                open: true,
+                type: 'success',
+                message: 'logged out'
+            })
         }).catch((err)=>{
-            alert("Not able to logout");
+            setAlert({
+                open: true,
+                type: 'error',
+                message: 'not able to logout'
+            })
         });
     }  
     const [user] = useAuthState(auth);
@@ -64,19 +74,23 @@ const AccountIcon = () => {
         }
 
     }
-
-    const {setAlert} = useAlert();
     const googleProvider = new GoogleAuthProvider();
 
 
     const signInWithGoogle = ()=>{
-        signInWithPopup(auth, googleProvider).then((res)=>{
-            setAlert({
-                open: true,
-                type: 'success',
-                message: 'Logged in'
+        signInWithPopup(auth, googleProvider).then(async(res)=>{
+            const username = res.user.email.split('@')[0];
+            console.log(username);
+            const ref = await db.collection('usernames').doc(username).set({
+                uid: res.user.uid
+            }).then((response)=>{
+                setAlert({
+                    open: true,
+                    type: 'success',
+                    message: 'Logged in'
+                });
+                handleClose();
             });
-            handleClose();
         }).catch((err)=>{
             setAlert({
                 open: true,
