@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { themeOptions } from '../Styles/theme';
+import { themeOptions } from '../Styles/Theme';
 import {useTheme} from '../Context/ThemeContext';
 
 const Footer = () => {

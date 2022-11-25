@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { createContext } from "react";
-import { themeOptions } from "../Styles/theme";
+import { themeOptions } from "../Styles/Theme";
 
 
 const ThemeContext = createContext();
