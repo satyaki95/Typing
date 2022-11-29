@@ -49,13 +49,25 @@ const ComparePage = () => {
     useEffect(()=>{
         getData();
     },[]);
-
-
+console.log(loggedInUserData);
+console.log(compareUserData);
 
   return (
     <div>
-        <Graph graphData={loggedInUserGraphData} type='date'/>
-        <Graph graphData={compareUserGraphData} type='date'/>
+        <div className='com'>
+        <Graph className='com1' graphData={loggedInUserGraphData} type='date'/>
+        
+        <Graph  graphData={compareUserGraphData} type='date'/>
+        </div>
+        {/* <div>
+            {loggedInUserData&&loggedInUserData.map((item,i)=>(
+                <div>
+                    <h3>{item.wpm}</h3>
+                <h3>{item.characters}</h3>
+                </div>
+            ))}
+            <h3>{compareUserData}</h3>
+        </div> */}
     </div>
   )
 }

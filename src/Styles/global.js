@@ -249,4 +249,13 @@ body::-webkit-scrollbar {
     margin-top:3rem;
     transform: scale(2);
 }
+.com{
+    display: flex;
+    width: 50%;
+    
+}
+.com1{
+    width: 50%;
+}
+
 `;
