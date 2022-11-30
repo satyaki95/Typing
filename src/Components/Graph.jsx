@@ -45,6 +45,7 @@ const Graph = ({graphData,type}) => {
                     ]
                 }
             }
+            style={{width:"700px"}}
         >
         </Line>
 

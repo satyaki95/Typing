@@ -54,19 +54,27 @@ console.log(compareUserData);
 
   return (
     <div>
-        <div className='com'>
-        <Graph className='com1' graphData={loggedInUserGraphData} type='date'/>
+        <div className='compare'>
+        <Graph  graphData={loggedInUserGraphData} type='date'/>
         
         <Graph  graphData={compareUserGraphData} type='date'/>
         </div>
-        {/* <div>
+        {/* <div className='compare'>
             {loggedInUserData&&loggedInUserData.map((item,i)=>(
-                <div>
-                    <h3>{item.wpm}</h3>
-                <h3>{item.characters}</h3>
+                <div style={{pading:"1px"}}>
+                    <h3 id="data-value">{item.wpm}</h3>
+                <h3 id="data-value">{item.characters}</h3>
                 </div>
             ))}
-            <h3>{compareUserData}</h3>
+            <div className='compare'>
+            {compareUserData&&compareUserData.map((item,i)=>(
+                <div style={{pading:"1px"}}>
+                    <h3 id="data-value">{item.wpm}</h3>
+                <h3 id="data-value">{item.characters}</h3>
+                </div>
+            ))}
+            </div>
+             
         </div> */}
     </div>
   )

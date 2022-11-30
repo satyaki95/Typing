@@ -249,13 +249,20 @@ body::-webkit-scrollbar {
     margin-top:3rem;
     transform: scale(2);
 }
-.com{
+.compare{
     display: flex;
-    width: 50%;
+    width:40%;
+    height:100%;
+    
     
 }
-.com1{
-    width: 50%;
+.compareGraph{
+    width:30px;
+    height:50%;
+    
 }
-
+// .data-value{
+//     height:10px;
+//     pading:1px;
+// }
 `;
